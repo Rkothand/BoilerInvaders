@@ -168,8 +168,9 @@ void update2(int x, int y)
 
 void rocketMan(void)
 {
+    midioff();
     // Draw the background.
-    MIDI_Player *mp = midi_init(miidifile);
+    MIDI_Player *mp = midi_init(SWmidifile);
     init_tim2(10417);
 
     srand(250);
@@ -372,7 +373,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(miidifile);
+                    mp = midi_init(SWmidifile);
                     }
                     loseScreen();
                     break;
@@ -389,7 +390,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(miidifile);
+                    mp = midi_init(SWmidifile);
                     }
                     loseScreen();
                     break;
@@ -406,7 +407,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(miidifile);
+                    mp = midi_init(SWmidifile);
                     }
                     loseScreen();
                     break;
@@ -554,7 +555,7 @@ void rocketMan(void)
                 asm("wfi");
                 if (mp->nexttick == MAXTICKS)
                 {
-                mp = midi_init(miidifile);
+                mp = midi_init(SWmidifile);
                 }
                 //nano_wait(40000000000);
 
@@ -671,7 +672,7 @@ void generateGame(void) {
 
 
 void titleScreen(void){
-    MIDI_Player *mp = midi_init(miidifile);
+    MIDI_Player *mp = midi_init(SWmidifile);
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
     int right, left, shootah;
@@ -691,7 +692,7 @@ void titleScreen(void){
         }
         shootah = GPIOC->IDR & 1<<8;
     }
-    mp = midi_init(miidifile);
+    mp = midi_init(SWmidifile);
     midioff();
 
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
