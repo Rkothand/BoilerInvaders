@@ -705,6 +705,10 @@ void winScreen(void){
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
     update(120,160,7);
+    if (mp->nexttick == MAXTICKS)
+    {
+    mp = midi_init(Cantinamidifile);
+    }
 }
 
 void loseScreen(void){
@@ -713,6 +717,10 @@ void loseScreen(void){
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
     update(120,160,8);
+    if (mp->nexttick == MAXTICKS)
+    {
+    mp = midi_init(Cantinamidifile);
+    }
 }
 
 void midioff(void){
