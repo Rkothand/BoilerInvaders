@@ -169,7 +169,7 @@ void update2(int x, int y)
 void rocketMan(void)
 {
     // Draw the background.
-    MIDI_Player *mp = midi_init(SWmidifile);
+    MIDI_Player *mp = midi_init(miidifile);
     init_tim2(10417);
 
     srand(250);
@@ -372,7 +372,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(SWmidifile);
+                    mp = midi_init(miidifile);
                     }
                     loseScreen();
                     break;
@@ -389,7 +389,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(SWmidifile);
+                    mp = midi_init(miidifile);
                     }
                     loseScreen();
                     break;
@@ -406,7 +406,7 @@ void rocketMan(void)
                     asm("wfi");
                     if (mp->nexttick == MAXTICKS)
                     {
-                    mp = midi_init(SWmidifile);
+                    mp = midi_init(miidifile);
                     }
                     loseScreen();
                     break;
@@ -554,8 +554,10 @@ void rocketMan(void)
                 asm("wfi");
                 if (mp->nexttick == MAXTICKS)
                 {
-                mp = midi_init(SWmidifile);
+                mp = midi_init(miidifile);
                 }
+                //nano_wait(40000000000);
+
                 winScreen();
                 break;
             }
@@ -669,7 +671,7 @@ void generateGame(void) {
 
 
 void titleScreen(void){
-    MIDI_Player *mp = midi_init(SWmidifile);
+    MIDI_Player *mp = midi_init(miidifile);
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
     int right, left, shootah;
@@ -689,13 +691,14 @@ void titleScreen(void){
         }
         shootah = GPIOC->IDR & 1<<8;
     }
-    mp = midi_init(SWmidifile);
+    mp = midi_init(miidifile);
     midioff();
 
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
 }
 
 void winScreen(void){
+    isSoundeffect[1] = 0;
     midioff();
     MIDI_Player *mp = midi_init(Cantinamidifile);
     init_tim2(10417);

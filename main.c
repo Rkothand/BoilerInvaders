@@ -24,7 +24,7 @@ struct {
     uint32_t volume;
     uint32_t offset;
 } soundeffects[] = {
-        {261.63 * N / RATE * (1<<16),1,0}, {73.42 * N / RATE * (1<<16),1,0}, {440.00 * N / RATE * (1<<16),1,0}
+        {261.63 * N / RATE * (1<<16),1,0}, {293.66 * N / RATE * (1<<16),1,0}, {440.00 * N / RATE * (1<<16),1,0}
         // NAZRAN! I'm using sf[0] as shoot, sf[1] as invader killed, and sf[2] as explosion!
         // I also changed the sf lengths for invader killed and expl to 50. When you get better sounds in these, this
 //        will probably need to be changed. ALSO, theres a tricky problem we have when the explosion sound is triggered.

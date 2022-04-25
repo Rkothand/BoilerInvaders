@@ -17,6 +17,15 @@ void init_wavetable_hybrid2(void);  // another comb of sine/sawtooth
 
 // The encoded MIDI file to play.
 extern unsigned char midifile[];
+extern unsigned char SWmidifile[];
+extern unsigned char Rickrollmidifile[];
+extern unsigned char miidifile[];
+extern unsigned char Cantinamidifile[];
+extern unsigned char fighter[];
+
+
+
+
 
 int isSoundeffect[3];
 
