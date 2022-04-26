@@ -173,7 +173,7 @@ void rocketMan(void)
     MIDI_Player *mp = midi_init(SWmidifile);
     init_tim2(10417);
 
-    srand(250);
+    srand(2500);
 
     int x = 120;
     int y = 22;
