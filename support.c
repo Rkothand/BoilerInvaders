@@ -249,6 +249,14 @@ void rocketMan(void)
             left = GPIOA->IDR & 1<<7;
             shootah = GPIOA->IDR & 1<<8;
 
+
+//
+//            if(mp[1]){
+//                MIDI_Player *mp = midi_init(SWmidifile);
+//                init_tim2(10417);
+//            }
+
+
             if((shootah && 1<<8) && (gbCheck != 1) && !((x > shieldX - 20 + 10 * shieldDir) && (x < shieldX + 20 + 10 * shieldDir))) // initializing good bullet
             {
 //                voice[VOICES].number = 1;
