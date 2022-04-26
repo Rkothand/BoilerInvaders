@@ -250,7 +250,7 @@ void rocketMan(void)
             shootah = GPIOA->IDR & 1<<8;
 
 
-//
+
 //            if(mp[1]){
 //                MIDI_Player *mp = midi_init(SWmidifile);
 //                init_tim2(10417);
@@ -614,7 +614,11 @@ void rocketMan(void)
 //            }
 
             alternate = altInc(alternate);
-
+            asm("wfi");
+            if (mp->nexttick == MAXTICKS)
+            {
+            mp = midi_init(SWmidifile);
+            }
 
 
         }
