@@ -245,9 +245,9 @@ void rocketMan(void)
     {
 
             nano_wait(2000000); // wait
-            right = GPIOC->IDR & 1<<6;
-            left = GPIOC->IDR & 1<<7;
-            shootah = GPIOC->IDR & 1<<8;
+            right = GPIOA->IDR & 1<<6;
+            left = GPIOA->IDR & 1<<7;
+            shootah = GPIOA->IDR & 1<<8;
 
             if((shootah && 1<<8) && (gbCheck != 1) && !((x > shieldX - 20 + 10 * shieldDir) && (x < shieldX + 20 + 10 * shieldDir))) // initializing good bullet
             {
@@ -701,8 +701,8 @@ void titleScreen(void){
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
     int right, left, shootah;
-    right = GPIOC->IDR & 1<<6;
-    left = GPIOC->IDR & 1<<7;
+    right = GPIOA->IDR & 1<<6;
+    left = GPIOA->IDR & 1<<7;
 
     //   LCD_DrawPicture(0,0,&background);
     int titlex = 120;
@@ -715,7 +715,7 @@ void titleScreen(void){
         if(shootah == 1<<8){
             break;
         }
-        shootah = GPIOC->IDR & 1<<8;
+        shootah = GPIOA->IDR & 1<<8;
     }
     mp = midi_init(SWmidifile);
     midioff();
