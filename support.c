@@ -375,7 +375,7 @@ void rocketMan(void)
             {
                 update(bgBX1, bgBY1, 5);
                 bgBY1 -=2;
-                bgBullet1 = bgBulletCheck(bgBX1, bgBY1, x, y, shieldX, shieldY, bg1Check);
+                bgBullet1 = bgBulletCheck(bgBX1, bgBY1, x, y, shieldX, shieldY);//, bg1Check);
                 if(bgBullet1 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -392,7 +392,7 @@ void rocketMan(void)
             {
                 update(bgBX2, bgBY2, 5);
                 bgBY2 -=2;
-                bgBullet2 = bgBulletCheck(bgBX2, bgBY2, x, y, shieldX, shieldY, bg2Check);
+                bgBullet2 = bgBulletCheck(bgBX2, bgBY2, x, y, shieldX, shieldY);//;, bg2Check);
                 if(bgBullet2 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -409,7 +409,7 @@ void rocketMan(void)
             {
                 update(bgBX3, bgBY3, 5);
                 bgBY3 -=2;
-                bgBullet3 = bgBulletCheck(bgBX3, bgBY3, x, y, shieldX, shieldY, bg3Check);
+                bgBullet3 = bgBulletCheck(bgBX3, bgBY3, x, y, shieldX, shieldY);//, bg3Check);
                 if(bgBullet3 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -427,7 +427,7 @@ void rocketMan(void)
             {
                 update(bgBX4, bgBY4, 5);
                 bgBY4 -=2;
-                bgBullet4 = bgBulletCheck(bgBX4, bgBY4, x, y, shieldX, shieldY, bg4Check);
+                bgBullet4 = bgBulletCheck(bgBX4, bgBY4, x, y, shieldX, shieldY);//, bg4Check);
                 if(bgBullet4 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -445,7 +445,7 @@ void rocketMan(void)
             {
                 update(bgBX5, bgBY5, 5);
                 bgBY5 -=2;
-                bgBullet5 = bgBulletCheck(bgBX5, bgBY5, x, y, shieldX, shieldY, bg5Check);
+                bgBullet5 = bgBulletCheck(bgBX5, bgBY5, x, y, shieldX, shieldY);//, bg5Check);
                 if(bgBullet5 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -462,7 +462,7 @@ void rocketMan(void)
             {
                 update(bgBX6, bgBY6, 5);
                 bgBY6 -=2;
-                bgBullet6 = bgBulletCheck(bgBX6, bgBY6, x, y, shieldX, shieldY, bg1Check);
+                bgBullet6 = bgBulletCheck(bgBX6, bgBY6, x, y, shieldX, shieldY);//, bg1Check);
                 if(bgBullet6 == -1){
                     isSoundeffect[2] = 1;
                     asm("wfi");
@@ -638,7 +638,7 @@ int bgCheck(int bgX, int bgY, int gbX, int gbY, int* gbCheck) {
     return 1;
 }
 
-int bgBulletCheck(int BX, int BY, int PX, int PY, int shieldX, int shieldY, int badGuyCheck)
+int bgBulletCheck(int BX, int BY, int PX, int PY, int shieldX, int shieldY)//, int badGuyCheck)
 {
     if(BX < shieldX + 15 && BX > shieldX - 15 && BY > shieldY && BY < shieldY + 20)
     {
@@ -650,10 +650,10 @@ int bgBulletCheck(int BX, int BY, int PX, int PY, int shieldX, int shieldY, int 
         update(BX, BY, 9);
         return 0;
         }
-    else if(!badGuyCheck){
-        nano_wait(1000);
-        update(BX, BY, 9);
-    }
+//    else if(!badGuyCheck){
+//        nano_wait(1000);
+//        update(BX, BY, 9);
+//    }
     else if(BY < -20)
     {
         return 0;
