@@ -314,7 +314,7 @@ void rocketMan(void)
             //BAD GUY SHOOTING STUFF
             if(alternate % 50 == 0)
             {
-              randNum = rand() % 3;
+              randNum = rand() % 6;
 
 
             if(randNum == 0 && !bgBullet1)
@@ -336,24 +336,24 @@ void rocketMan(void)
                 bgBX3 = bgX3;
                 bgBY3 = bgY3 - 10;
             }
-//            if(!bgBullet4)//randNum == 3 && !bgBullet4)
-//            {
-//                bgBullet4 = 1;
-//                bgBX4 = bgX4;
-//                bgBY4 = bgY4 - 10;
-//            }
-//            if(!bgBullet5)//randNum == 4 && !bgBullet5)
-//            {
-//                bgBullet5 = 1;
-//                bgBX5 = bgX5;
-//                bgBY5 = bgY5 - 10;
-//            }
-//            if(!bgBullet6)//randNum == 5 && !bgBullet6)
-//            {
-//                bgBullet6 = 1;
-//                bgBX6 = bgX6;
-//                bgBY6 = bgY6 - 10;
-//            }
+            if(randNum == 3 && !bgBullet4)
+            {
+                bgBullet4 = 1;
+                bgBX4 = bgX4;
+                bgBY4 = bgY4 - 10;
+            }
+            if(randNum == 4 && !bgBullet5)
+            {
+                bgBullet5 = 1;
+                bgBX5 = bgX5;
+                bgBY5 = bgY5 - 10;
+            }
+            if(randNum == 5 && !bgBullet6)
+            {
+                bgBullet6 = 1;
+                bgBX6 = bgX6;
+                bgBY6 = bgY6 - 10;
+            }
 //            if(!bgBullet7)//randNum == 6 && !bgBullet7)
 //            {
 //                bgBullet7 = 1;
@@ -413,36 +413,61 @@ void rocketMan(void)
                     break;
                 }
             }
-//            if(1)//bgBullet4 && bg4Check)
-//            {
-//                update(bgBX4, bgBY4, 5);
-//                bgBY4 -=1;
-//                bgBullet4 = bgBulletCheck(bgBX4, bgBY4, x, y, shieldX, shieldY);
-////                if(bgBullet4 == -1){
-//                  isSoundeffect[2] = 1;
-////                    break;
-////                }
-//            }
-//            if(bgBullet5 && bg5Check)
-//            {
-//                update(bgBX5, bgBY5, 5);
-//                bgBY5 -=1;
-//                bgBullet5 = bgBulletCheck(bgBX5, bgBY5, x, y, shieldX, shieldY);
-////                if(bgBullet5 == -1){
-//                  isSoundeffect[2] = 1;
-////                    break;
-////                }
-//            }
-//            if(bgBullet6 && bg6Check)
-//            {
-//                update(bgBX6, bgBY6, 5);
-//                bgBY6 -=1;
-//                bgBullet6 = bgBulletCheck(bgBX6, bgBY6, x, y, shieldX, shieldY);
-////                if(bgBullet6 == -1){
-//                  isSoundeffect[2] = 1;
-////                    break;
-////                }
-//            }
+
+
+            if(bgBullet4 && bg4Check)
+            {
+                update(bgBX4, bgBY4, 5);
+                bgBY4 -=2;
+                bgBullet4 = bgBulletCheck(bgBX4, bgBY4, x, y, shieldX, shieldY, bg4Check);
+                if(bgBullet4 == -1){
+                    isSoundeffect[2] = 1;
+                    asm("wfi");
+                    if (mp->nexttick == MAXTICKS)
+                    {
+                    mp = midi_init(SWmidifile);
+                    }
+                    loseScreen();
+                    break;
+                }
+            }
+
+
+            if(bgBullet5 && bg5Check)
+            {
+                update(bgBX5, bgBY5, 5);
+                bgBY5 -=2;
+                bgBullet5 = bgBulletCheck(bgBX5, bgBY5, x, y, shieldX, shieldY, bg5Check);
+                if(bgBullet5 == -1){
+                    isSoundeffect[2] = 1;
+                    asm("wfi");
+                    if (mp->nexttick == MAXTICKS)
+                    {
+                    mp = midi_init(SWmidifile);
+                    }
+                    loseScreen();
+                    break;
+                }
+            }
+
+            if(bgBullet6 && bg6Check)
+            {
+                update(bgBX6, bgBY6, 5);
+                bgBY6 -=2;
+                bgBullet6 = bgBulletCheck(bgBX6, bgBY6, x, y, shieldX, shieldY, bg1Check);
+                if(bgBullet6 == -1){
+                    isSoundeffect[2] = 1;
+                    asm("wfi");
+                    if (mp->nexttick == MAXTICKS)
+                    {
+                    mp = midi_init(SWmidifile);
+                    }
+                    loseScreen();
+                    break;
+                }
+            }
+
+
 //            if(bgBullet7 && bg7Check)
 //            {
 //                update(bgBX7, bgBY7, 5);
@@ -699,7 +724,10 @@ void titleScreen(void){
 }
 
 void winScreen(void){
+    isSoundeffect[0] = 0;
     isSoundeffect[1] = 0;
+    isSoundeffect[2] = 0;
+
     midioff();
     MIDI_Player *mp = midi_init(Cantinamidifile);
     init_tim2(10417);
@@ -712,6 +740,12 @@ void winScreen(void){
 }
 
 void loseScreen(void){
+    isSoundeffect[0] = 0;
+    isSoundeffect[1] = 0;
+
+    nano_wait(400000000);
+    isSoundeffect[2] = 0;
+
     midioff();
     MIDI_Player *mp = midi_init(Cantinamidifile);
     init_tim2(10417);
