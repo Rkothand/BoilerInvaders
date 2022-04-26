@@ -553,6 +553,7 @@ void rocketMan(void)
                     {
                         update(gbX-2, ++gbY, 0);
                     }
+                    update(bgBX4, bgBY4, 9);
                 }
             }
             if(bg5Check)
@@ -567,6 +568,7 @@ void rocketMan(void)
                     {
                         update(gbX-2, ++gbY, 0);
                     }
+                    update(bgBX5, bgBY5, 9);
                 }
             }
 
@@ -582,6 +584,7 @@ void rocketMan(void)
                     {
                         update(gbX-2, ++gbY, 0);
                     }
+                    update(bgBX6, bgBY6, 9);
                 }
             }
             if(!(bg1Check + bg2Check +bg3Check +bg4Check +bg5Check +bg6Check)){
