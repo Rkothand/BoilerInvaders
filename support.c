@@ -173,7 +173,7 @@ void rocketMan(void)
     MIDI_Player *mp = midi_init(SWmidifile);
     init_tim2(10417);
 
-    srand(2500);
+    srand(2505);
 
     int x = 120;
     int y = 22;
@@ -245,9 +245,9 @@ void rocketMan(void)
     {
 
             nano_wait(2000000); // wait
-            right = GPIOA->IDR & 1<<6;
+            right = GPIOA->IDR & 1<<5;
             left = GPIOA->IDR & 1<<7;
-            shootah = GPIOA->IDR & 1<<8;
+            shootah = GPIOA->IDR & 1<<6;
 
 
 
@@ -257,7 +257,7 @@ void rocketMan(void)
 //            }
 
 
-            if((shootah && 1<<8) && (gbCheck != 1) && !((x > shieldX - 20 + 10 * shieldDir) && (x < shieldX + 20 + 10 * shieldDir))) // initializing good bullet
+            if((shootah && 1<<6) && (gbCheck != 1) && !((x > shieldX - 20 + 10 * shieldDir) && (x < shieldX + 20 + 10 * shieldDir))) // initializing good bullet
             {
 //                voice[VOICES].number = 1;
 //                voice[VOICES].soundEffect = 1;
@@ -291,13 +291,13 @@ void rocketMan(void)
                 gbY += 1;
             }
 
-            if (right && 1<<7)
+            if (right && 1<<5)
             {
                 //nano_wait(5000000);
                 x++;
                 update(x, y, 2);
             }
-            else if(left && 1<<6)
+            else if(left && 1<<7)
             {
                 //nano_wait(5000000);
                 x--;
@@ -715,9 +715,9 @@ void titleScreen(void){
     MIDI_Player *mp = midi_init(SWmidifile);
     init_tim2(10417);
     LCD_DrawFillRectangle(0, 0, 240, 320, BLACK);
-    int right, left, shootah;
-    right = GPIOA->IDR & 1<<6;
-    left = GPIOA->IDR & 1<<7;
+    int shootah;
+//    right = GPIOA->IDR & 1<<6;
+//    left = GPIOA->IDR & 1<<7;
 
     //   LCD_DrawPicture(0,0,&background);
     int titlex = 120;
@@ -727,10 +727,10 @@ void titleScreen(void){
         update(titlex,titley,6);
         nano_wait(4000000000);
         titley++;
-        if(shootah == 1<<8){
+        if(shootah == 1<<6){
             break;
         }
-        shootah = GPIOA->IDR & 1<<8;
+        shootah = GPIOA->IDR & 1<<6;
     }
     mp = midi_init(SWmidifile);
     midioff();
